@@ -1,0 +1,23 @@
+FCM:
+
+Nội dung gửi đi có thể lên đến 4KB(khoảng 4000 ký tự).
+Giới hạn số lượng gửi tin nhắn đồng thời.
+ Một số use-case phổ biến:
+	•	Hiển thị một thông báo (notification)
+	•	Đồng bộ dữ liệu trên thiết bị (ex: chạy ngầm để đồng bộ data lưu ở shared_preferences)
+	•	Cập nhật giao diện (UI) của ứng dụng
+  IsoLate:   That said, isolates are commonly used for the following:
+	•	Reading data from a local database
+	•	Sending push notifications
+	•	Parsing and decoding large data files
+	•	Processing or compressing photos, audio files, and video files
+	•	Converting audio and video files
+	•	When you need asynchronous support while using FFI
+	•	Applying filtering to complex lists or filesystems
+
+*  Lưu ý:
+	•	Các hàm xử lý của một Isolate (ví dụ trên là parseData) cần phải là một function nằm ở Top-Level (ngoài cùng) hoặc là một STATIC function.
+	•	Isolate giao tiếp bằng cách truyền các "message" qua lại. Những dữ liệu này có thể là các giá trị nguyên thủy (null, num, double..) hoặc String hoặc những đối tượng cơ bản (ví dụ như Photo Object ví dụ trên). Với những đối tượng phức tạp (như Fututer, Response...) bạn sẽ gặp lỗi trong quá trình truyền dữ liệu.
+	•	Trong trường hợp có nhiều dữ liệu cần truyền giữa các Isolate, chúng ta có bọc chúng dưới dạng List<dynamic> hoặc Map. Bởi vì nó chỉ hỗ trợ gửi duy nhất một tham số
+
+
